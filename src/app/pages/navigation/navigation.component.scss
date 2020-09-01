@@ -1,0 +1,23 @@
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #212121f3;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  opacity: 0.5;
+}
+
+.header {
+  background-color: #282828f3;
+}
+
+.content {
+  background-color: #212121f3;
+}
+

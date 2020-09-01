@@ -1,0 +1,59 @@
+<div class="container py-5" @fadeInTranslateYTop>
+  <mat-card class="mat-elevation-z8">
+    <mat-card-content>
+      <form>
+        <form [formGroup]="recoverForm">
+          <mat-form-field class="col-12 mt-3" appearance="outline">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput placeholder="Entrez votre nom d'utilisateur" formControlName="username"
+              autocomplete="username">
+            <mat-error *ngIf="recoverForm.controls['username'].hasError('required')">
+              Champ <strong>obligatoire</strong>
+            </mat-error>
+          </mat-form-field>
+          <div class="col-12 my-3 d-flex justify-content-center" *ngIf="!codeSent">
+            <button mat-stroked-button color="primary" (click)="verifyUser()">
+              <strong>Envoyer le code de réinitialisation à mon adresse email</strong>
+            </button>
+          </div>
+          <mat-form-field class="col-12 mt-3" appearance="outline">
+            <mat-label>Code reçu à 6 chiffres</mat-label>
+            <input matInput placeholder="XXXXXX" formControlName="code" autocomplete="none">
+            <mat-error
+              *ngIf="recoverForm.controls['code'].hasError('minlength') || recoverForm.controls['code'].hasError('maxlength')">
+              6 chiffres <strong>obligatoires</strong>
+            </mat-error>
+            <mat-error *ngIf="recoverForm.controls['code'].hasError('required')">
+              Champ <strong>obligatoire</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-6 mt-3" appearance="outline">
+            <mat-label>Nouveau mot de passe</mat-label>
+            <input type="password" matInput placeholder="Choisissez un mot de passe" autocomplete="new-password"
+              formControlName="newPassword">
+            <mat-error *ngIf="recoverForm.controls['newPassword'].hasError('required')">
+              Champ <strong>obligatoire</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-6 mt-3" appearance="outline">
+            <mat-label>Confirmation du mot de passe</mat-label>
+            <input type="password" matInput placeholder="Confirmer le mot de passe" autocomplete="new-password"
+              formControlName="confirmPassword">
+            <mat-error
+              *ngIf="recoverForm.controls['confirmPassword'].hasError('unmatch') && !recoverForm.controls['confirmPassword'].hasError('required')">
+              Les mots de passe ne correspondent pas
+            </mat-error>
+            <mat-error *ngIf="recoverForm.controls['confirmPassword'].hasError('required')">
+              Champ <strong>obligatoire</strong>
+            </mat-error>
+          </mat-form-field>
+          <div class="col-12 pt-3 mb-3">
+            <button mat-stroked-button color="primary" [disabled]="!recoverForm.valid" (click)="updateUser()">
+              Modifier le mot de passe
+            </button>
+          </div>
+        </form>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

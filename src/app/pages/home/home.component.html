@@ -1,0 +1,65 @@
+<div class="container py-5" @fadeInTranslateXLeft>
+  <mat-card class="mat-elevation-z3">
+    <mat-card-content>
+      <div class="col-12 d-flex align-items-center">
+        <form [formGroup]="urlForm" class="flex-fill row no-gutters" *ngIf="!document.created">
+          <mat-form-field class="col-12 mt-3" appearance="outline" floatLabel="always">
+            <mat-label class="text-primary"><strong>1. Entrez ou collez votre lien</strong></mat-label>
+            <div class="d-flex align-items-center">
+              <input matInput formControlName="url" class="big-input" placeholder="http://" autofocus
+                (keyup)="keyboardSubmit($event)">
+              <mat-icon matSuffix class="text-muted mr-2">link</mat-icon>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="col-12 mt-3" appearance="outline" floatLabel="always">
+            <mat-label class="text-primary">
+              <strong>2. Personnlisez votre id<span *ngIf="!data._id" class="ml-1">(disponible si
+                  enregistré)</span></strong>
+            </mat-label>
+            <div class="d-flex align-items-center">
+              <input matInput placeholder="mon.id" formControlName="slug" pattern="^[a-zA-Z0-9_.-]*$"
+                value="https://shortened.daedal.pro/" (keyup)="keyboardSubmit($event)">
+            </div>
+            <mat-icon matSuffix class="text-muted mr-2">local_offer</mat-icon>
+            <mat-error *ngIf="urlForm.controls['slug'].hasError('pattern')">
+              Caractères spéciaux non autorisés
+            </mat-error>
+            <mat-error
+              *ngIf="urlForm.controls['slug'].hasError('unavailable') && !urlForm.controls['slug'].hasError('pattern')">
+              id <strong>indisponible</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <mat-form-field class="flex-fill mt-3" appearance="outline" floatLabel="always" *ngIf="document.created">
+          <mat-label>Votre lien raccourci</mat-label>
+          <div class="d-flex align-items-center">
+            <input matInput class="text-primary big-input" value="https://shortened.daedal.pro/{{ document.shortId }}"
+              disabled>
+            <button mat-button mat-icon-button matSuffix (click)="copyLink()">
+              <mat-icon class="text-accent">content_copy</mat-icon>
+            </button>
+          </div>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!document.created" class="col-12 mb-3 d-flex justify-content-end">
+        <button mat-stroked-button color="primary" (click)="createDocument()" *ngIf="!loading">
+          <strong>Raccourcir</strong>
+        </button>
+        <button mat-stroked-button color="primary" *ngIf="loading">
+          <div class="d-flex justify-content-center my-2">
+            <mat-spinner diameter="18"></mat-spinner>
+          </div>
+        </button>
+      </div>
+      <div *ngIf="document.created" class="col-12 mb-3 d-flex justify-content-end">
+        <button mat-stroked-button color="accent" (click)="showQrCode()">
+          <mat-icon class="mb-1">qr_code</mat-icon>
+        </button>
+        <span class="mx-2"></span>
+        <button mat-stroked-button color="primary" (click)="reset()">
+          <mat-icon class="mb-1">autorenew</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

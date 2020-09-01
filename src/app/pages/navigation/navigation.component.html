@@ -1,0 +1,103 @@
+<div @fadeIn>
+  <mat-toolbar>
+    <div class="container d-flex align-items-center text-accent">
+      <span class="pointer" (click)="goTo('home')">
+        Accueil
+      </span>
+      <span class="ml-auto"></span>
+      <span *ngIf="data.user._id === undefined">
+        <span class="pointer" (click)="goTo('login')">
+          Connexion
+        </span>
+        <span class="mx-2"></span>
+        <span class="pointer text-primary" (click)="goTo('signup')">
+          Inscription
+        </span>
+      </span>
+      <span *ngIf="data.user._id !== undefined">
+        <span class="pointer text-primary" (click)="goTo('dashboard')">
+          Mes liens
+        </span>
+        <span class="mx-2"></span>
+        <span class="pointer text-warning" (click)="disconnect()">
+          Déconnexion
+        </span>
+      </span>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <div class="header mat-elevation-z3 py-5">
+      <div class="container">
+        <div class="col-12 d-flex justify-content-center align-items-end text-center">
+          <span class="display-2 font-one text-light text-center"><span class="text-primary">URL</span> Shortener</span>
+          <div class="ml-3 mb-3">
+            <mat-icon class="display-4 text-primary">crop</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+    <div class="content mat-elevation-z3 py-5">
+      <div class="container">
+        <div class="row text-light">
+          <div class="col-12 text-center">
+            <span class="display-4 text-muted"><i>Créez des liens raccourcis et peronnalisés en quelques
+                clics</i></span>
+          </div>
+          <div class="col-12 text-center mt-5">
+            <h1><span class="text-accent">1.</span> Collez ou saisissez votre lien</h1>
+          </div>
+          <div class="col-12 text-center">
+            <h1><span class="text-accent">2.</span> Cliquez sur raccourcir</h1>
+          </div>
+          <div class="col-12 text-center d-flex align-items-center justify-content-center" style="font-size: 24px;">
+            <span><span class="text-accent">3.</span> Et partagez le lien ou son QR Code</span>
+            <div class="mt-1">
+              <mat-icon class="text-accent mx-1">qr_code</mat-icon>
+            </div>
+          </div>
+          <div class="col-12 text-center mt-5">
+            <br>
+            <h1>Profitez ensuite d'une intégration parfaite sur tous les réseaux sociaux avec la prise en charge des
+              metadatas du lien de destination</h1>
+          </div>
+          <div class="col-8 offset-2 d-flex justify-content-between align-items-center text-muted mt-3 mb-5"
+            style="font-size: 36px;">
+            <fa-icon [icon]="faFacebook"></fa-icon>
+            <fa-icon [icon]="faTwitter"></fa-icon>
+            <fa-icon [icon]="faYoutube"></fa-icon>
+            <fa-icon [icon]="faLinkedin"></fa-icon>
+            <fa-icon [icon]="faDiscord"></fa-icon>
+            <fa-icon [icon]="faTwitch"></fa-icon>
+            <span>...</span>
+          </div>
+          <div class="col-12 text-center mt-5">
+            <span class="display-4 text-muted"><i>Créez un compte gratuit pour booster le service</i></span>
+          </div>
+          <div class="col-2 offset-2 mt-5 d-flex align-items-center justify-content-center text-muted pb-4">
+            <mat-icon style="font-size: 32px;">local_offer</mat-icon>
+          </div>
+          <div class="col-6 mt-5">
+            <span class="text-muted" style="font-size: 24px;"><i>https://shortened.daedal.pro/<strong
+                  class="text-primary">mon.id</strong></i></span>
+            <h1>Possibilité de personnaliser vos liens. Idéal pour mettre
+              une audience en confiance</h1>
+          </div>
+          <div class="col-2 offset-2 mt-3 d-flex align-items-center justify-content-center text-muted pb-4">
+            <mat-icon style="font-size: 32px;">assessment</mat-icon>
+          </div>
+          <div class="col-6 mt-3">
+            <h1>Accès à votre interface d'administration regroupant tous les liens générés</h1>
+          </div>
+          <div class="col-2 offset-2 mt-3 d-flex align-items-center justify-content-center text-muted pb-4">
+            <mat-icon style="font-size: 32px;">trending_up</mat-icon>
+          </div>
+          <div class="col-6 mt-3">
+            <h1>Monitoring du nombres de clicks générés par vos liens</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-container>
+
+</div>

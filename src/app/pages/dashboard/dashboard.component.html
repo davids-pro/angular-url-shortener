@@ -1,0 +1,70 @@
+<div class="container pt-5 pb-3" *ngIf="loaded" @fadeInTranslateXRight>
+  <div class="row">
+    <div class="col-12 mb-3" *ngIf="documents.length === 0">
+      <mat-card>
+        <mat-card-content>
+          <div class="col-12 text-center text-warn display-4">
+            <strong>
+              AUCUN DOCUMENT
+            </strong>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngFor="let document of documents" class="col-12 mb-3">
+      <mat-card class="mat-elevation-z8">
+        <mat-card-content class="d-flex align-items-center">
+          <div class="col-2" *ngIf="document.image">
+            <img src="{{ document.image }}" class="img-fluid mat-elevation-z3">
+          </div>
+          <div class="col-2 d-flex align-items-center justify-content-center" *ngIf="!document.image">
+            <mat-icon class="text-muted">camera_alt</mat-icon>
+          </div>
+          <div class="col-4">
+            <div class="text-primary title">
+              <strong *ngIf="document.url.length > 30">
+                {{ document.url | slice:0:40 }}...
+              </strong>
+              <strong *ngIf="document.url.length <= 30">
+                {{ document.url | slice:0:40 }}
+              </strong>
+            </div>
+            <div class="my-1">
+              <a href="https://shortened.daedal.pro/{{ document.shortId }}" target="_blank">
+                https://shortened.daedal.pro/{{ document.shortId }}
+              </a>
+            </div>
+            <div>
+              créé le {{ document.created | date : 'fullDate' : undefined : 'fr-FR' }} à
+              {{ document.created | date : 'shortTime' : undefined : 'fr-FR' }}
+            </div>
+            <div>
+              <span *ngIf="document.customized" class="customized">Lien personnalisé</span>
+            </div>
+          </div>
+          <div class="col-3 text-center">
+            <span class="text-warn display-4">{{ document.clickCount }}</span>
+            click<span *ngIf="document.clickCount > 1">s</span>
+          </div>
+          <div class="col-3 d-flex justify-content-center">
+            <div>
+              <button mat-stroked-button (click)="copyLink(document)">
+                <mat-icon class="text-primary">content_copy</mat-icon>
+              </button>
+            </div>
+            <div>
+              <button mat-stroked-button class="mx-2" (click)="showQrCode(document)">
+                <mat-icon class="text-accent">qr_code</mat-icon>
+              </button>
+            </div>
+            <div>
+              <button mat-stroked-button (click)="deleteDocument(document)">
+                <mat-icon class="text-warn">delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+@import './theme.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.mat-card {
+  border: 5px solid #212121;
+  background-color: #e0e0e0;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #212121;
+}
+
+.bottom-sheet-container {
+  background-color: #313131;
+  color: #e0e0e0;
+}

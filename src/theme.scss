@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans Condensed, sans-serif',
+  $body-1: mat-typography-level(16px)
+  );
+
+@include mat-core($custom-typography);
+
+$shortener-primary: mat-palette($mat-green);
+$shortener-accent: mat-palette($mat-blue);
+$shortener-warn: mat-palette($mat-red);
+
+$shortener-theme: mat-light-theme($shortener-primary,
+  $shortener-accent,
+  $shortener-warn);
+
+@include angular-material-theme($shortener-theme);
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #303030;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #212121;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: mat-color($shortener-accent);
+}
+
+
+*:focus {
+  outline: none !important;
+}
+
+.font-one {
+  font-family: 'Anton', sans-serif;
+}
+
+.text-primary {
+  color: mat-color($shortener-primary) !important;
+  ;
+}
+
+.text-accent {
+  color: mat-color($shortener-accent) !important;
+  ;
+}
+
+.text-warn {
+  color: mat-color($shortener-warn) !important;
+  ;
+}
+
+.text-light {
+  color: #e0e0e0 !important;
+}
+
+.text-muted {
+  color: #686868 !important;
+}
+
+.background {
+  background-image: url('./assets/background/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #e0e0e0 inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: balck !important;
+}
+
+.mat-dialog-container {
+  background-color: #212121;
+}
